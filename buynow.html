@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <title>GEMS</title> 
+</head>
+
+<body>
+     <!-- head design -->
+     <header class="header">
+        <a href="#" class="logo">EnRex</a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <nav class="navbar">
+            <a href="index.html" class=>Home</a>
+            <a href="index.html#about">How it Works</a>
+            <a href="index.html#services">Features</a>
+            <a href="index.html#portfolio">Testimonials</a>
+            <a href="index.html#services" class="active">Pricing</a>
+            <a class="btn" href="index.html#signup">Sign Up</a>
+        </nav>
+    </header>
+
+
+ <!-- pricing section design -->
+
+ <section class="pricing" id="pricing">
+    <h2 class="heading">Our <span>Pricing</span> </h2>
+        <div class="pricing-container">
+           
+                <div class="package" >
+                  <input type="radio" id="package1" name="package" value="package1">
+                  <label for="package1"><h2>Package 1: Basic</h2></label>
+                  <p>Features:</p>
+                  <ul>
+                    <li>Real-time monitoring</li>
+                    <li>Usage analytics</li>
+                    <li>Monthly reports</li>
+                  </ul>
+                  <p>Price: $19.99/month</p>
+                  <button class="btn">Buy now</button>
+                </div>
+                <div class="package">
+                  <input type="radio" id="package2" name="package" value="package2">
+                  <label for="package2"><h2>Package 2: Advanced</h2></label>
+                  <p>Features:</p>
+                  <ul>
+                    <li>Real-time monitoring</li>
+                    <li>Usage analytics</li>
+                    <li>Demand response</li>
+                    <li>Customized alerts</li>
+                    <li>Quarterly reports</li>
+                  </ul>
+                  <p>Price: $39.99/month</p>
+                  <button class="btn">Buy now</button>
+                </div>
+                <div class="package">
+                  <input type="radio" id="package3" name="package" value="package3">
+                  <label for="package3"><h2>Package 3: Premium</h2></label>
+                  <p>Features:</p>
+                  <ul>
+                    <li>Real-time monitoring</li>
+                    <li>Usage analytics</li>
+                    <li>Demand response</li>
+                    <li>Customized alerts</li>
+                    <li>Monthly reports</li>
+                    <li>24/7 customer support</li>
+                  </ul>
+                  <p>Price: $69.99/month</p>
+                  <button class="btn">Buy now</button>
+                </div>
+        
+    
+    
+        </div>
+    </section>
+    
+
+
+
+    <!-- footer design -->
+    <footer class="footer">
+        <div class="footer-text">
+            <p>Copyright &copy; 2023 by EnRex | All rights reserved</p>
+            
+        </div>
+        <div class="footer-iconTop">
+            <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
+        </div>
+    </footer>
+<script>
+    // Get all the "Buy now" buttons
+const buyButtons = document.querySelectorAll(".btn");
+
+// Add a click event listener to each button
+buyButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    // Find the selected package
+    const packageInput = button.parentElement.querySelector("input[name=package]:checked");
+    if (packageInput) {
+      const package = packageInput.value;
+
+      // Hide the pricing section
+      const pricingSection = document.getElementById("pricing");
+      pricingSection.style.display = "none";
+
+      // Display the checkout section with the selected package details and payment form
+      const checkoutSection = document.createElement("section");
+      checkoutSection.classList.add('checkout');
+      checkoutSection.innerHTML = `
+        <h2 class="heading">Check<span>out!</span></h2>
+        <p>You have selected <span><b>${package.toUpperCase()}</b></span>.</p>
+        <p>Please enter your payment details:</p>
+        <form class="checkout-form" id="payment-form">
+          <div class="input-box">
+            <label for="card-number">Card number:</label>
+          <input type="text" id="card-number" placeholder="4947-2056-2056-2916" name="card-number" required>
+          <br>
+          <label for="expiry-date">Expiry date:</label>
+          <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+          <br>
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" placeholder="123" name="cvv" required>
+          <br>
+          </div>
+          <button type="submit" class="btn">Pay now</button>
+        </form>
+
+      `;
+      document.body.appendChild(checkoutSection);
+
+      // Add a submit event listener to the payment form
+      const paymentForm = checkoutSection.querySelector("#payment-form");
+      paymentForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const cardNumber = paymentForm.querySelector("#card-number").value;
+        const expiryDate = paymentForm.querySelector("#expiry-date").value;
+        const cvv = paymentForm.querySelector("#cvv").value;
+
+        // TODO: Process the payment and display a confirmation message
+      });
+    }
+  });
+});
+
+</script>
+</body>
+
+
+</html>
